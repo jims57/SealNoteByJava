@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.zcoo.seal.config.JwtTokenUtil;
 import net.zcoo.seal.model.JwtRequest;
 import net.zcoo.seal.model.JwtResponse;
+import net.zcoo.seal.model.UserDTO;
 import net.zcoo.seal.service.JwtUserDetailsService;
 
 @RestController
@@ -43,6 +44,11 @@ public class JwtAuthenticationController {
 		final String token = jwtTokenUtil.generateToken(userDetails);
 
 		return ResponseEntity.ok(new JwtResponse(token));
+	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ResponseEntity<?> saveUser(@RequestBody UserDTO user) throws Exception {
+		return ResponseEntity.ok(userDetailsService.save(user));
 	}
 
 	private void authenticate(String username, String password) throws Exception {
