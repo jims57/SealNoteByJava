@@ -14,14 +14,22 @@ public class HelloWorldController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping({"/hello"})
-    public String firstPage(){
-        return "Hello World";
+    // >>get mapping>>spring get mapping>>maping path>
+    // >specify get path>>specify getmapping path
+    @GetMapping(path = "/all")
+    public @ResponseBody Iterable<DAOUser> getAllUsers() {
+        // >>spring response json data>>spring boot response json data
+        // >>spring return json data
+        return userRepository.findAll();
     }
 
-    @GetMapping(path="/all") //>>get mapping>>spring get mapping>>maping path>>specify get path>>specify getmapping path
-    public @ResponseBody Iterable<DAOUser> getAllUsers() { //>>spring response json data>>spring boot response json data>>spring return json data
-        // This returns a JSON or XML with the users
-        return userRepository.findAll();
+    @RequestMapping("/hellouser")
+    public String getUser() {
+        return "Hello User";
+    }
+
+    @RequestMapping("/helloadmin")
+    public String getAdmin() {
+        return "Hello Admin";
     }
 }

@@ -10,19 +10,23 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "users") //>>mysql model>>spring mysql model>>mysql entity
+@Table(name = "users") // >>mysql model>>spring mysql model>>mysql entity
 public class DAOUser {
-    @Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-    //>>model auto pk field>>java model auto field>>auto field>>pk field>>model pk field
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	// >>model auto pk field>>java model auto field>>auto field>>pk field>>model pk
+	// field
 	private long id;
 
 	@Column
 	private String username;
 
 	@Column
-	@JsonIgnore //>>ignore file>>model ignore field
+	@JsonIgnore // >>ignore file>>model ignore field
 	private String password;
+
+	@Column
+	private String role;
 
 	public String getUsername() {
 		return username;
@@ -39,4 +43,13 @@ public class DAOUser {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 }
